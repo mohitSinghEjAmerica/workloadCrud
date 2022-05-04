@@ -1,5 +1,4 @@
 const { Model } = require('sequelize');
-const glEmployee = require('./glEmployee');
 module.exports = (sequelize, DataTypes) => {
   class account extends Model {}
   account.init(
@@ -37,6 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       underscore: true,
     },
   );
-  
+
   return account;
 };

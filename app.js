@@ -2,7 +2,9 @@ const express = require("express");
 const cors = require('cors');
 const app = express();
 const accountRouter = require("./routes/account");
+const employeeGroupRouter = require("./routes/employeeGroup");
 const glDepartmentRouter = require("./routes/glDepartment");
+const glEmployeeRouter = require("./routes/glEmployee");
 const glGroupRouter = require("./routes/glGroup");
 const wlCategoryRouter = require("./routes/wlCategory");
 const wlDepartmentRouter = require("./routes/wlDepartment");
@@ -17,7 +19,9 @@ const db = require("./models");
 
 // Routers
 app.use("/account", accountRouter);
+app.use("/employeeGroup", employeeGroupRouter);
 app.use("/glDepartment", glDepartmentRouter);
+app.use("/glEmployee", glEmployeeRouter);
 app.use("/glGroup", glGroupRouter);
 app.use("/wlCategory", wlCategoryRouter);
 app.use("/wlDepartment", wlDepartmentRouter);

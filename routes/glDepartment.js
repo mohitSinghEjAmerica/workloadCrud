@@ -5,8 +5,8 @@ const GlDepartment = require("../class/GlDepartment")
 
 // Get all Department
 router.get("/all", async (req, res) => {
-  const listOfDepartment = await glDepartment.findAll();
-  res.json(listOfDepartment);
+  await new GlDepartment( req, res ).getAllDepartments();
+
 });
 
 // Get department members class method
