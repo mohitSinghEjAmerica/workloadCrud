@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const app = express();
+const accountRouter = require("./routes/account");
 const glDepartmentRouter = require("./routes/glDepartment");
 const glGroupRouter = require("./routes/glGroup");
 const wlCategoryRouter = require("./routes/wlCategory");
@@ -15,6 +16,7 @@ app.use(express.json());
 const db = require("./models");
 
 // Routers
+app.use("/account", accountRouter);
 app.use("/glDepartment", glDepartmentRouter);
 app.use("/glGroup", glGroupRouter);
 app.use("/wlCategory", wlCategoryRouter);

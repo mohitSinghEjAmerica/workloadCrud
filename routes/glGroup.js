@@ -11,12 +11,13 @@ router.get("/all", async (req, res) => {
 
 // Get Groups by Group Lead class method
 router.get("/lead", async (req, res) => {
-    await new GlGroup( req, res ).getCategoriesByDepartmentLead(req.body.leadId);
+    await new GlGroup( req, res ).getGroupsByDepartmentLead(req.body.leadId);
 });
 
-// Get Groups by Group Lead class method
-router.get("/dept", async (req, res) => {
-    await new GlGroup( req, res ).getCategoriesByDepartment(req.body.department_id);
+// Get Groups by Department ID class method
+router.get("/dept/:id", async (req, res) => {
+    const {id} = req.params;
+    await new GlGroup( req, res ).getGroupsByDepartment(id);
 });
 
 // // Get Groups by Group Lead
@@ -34,7 +35,7 @@ router.post("/new", async (req, res) => {
 });
 
 // Update a Group
-router.put("/update/:id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
     const {id} = req.params
     const updateGroupWith = req.body
     const updateGroup = await glGroup.update(

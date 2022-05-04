@@ -1,11 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const { glDepartment } = require("../models");
+const GlDepartment = require("../class/GlDepartment")
 
 // Get all Department
 router.get("/all", async (req, res) => {
   const listOfDepartment = await glDepartment.findAll();
   res.json(listOfDepartment);
+});
+
+// Get department members class method
+router.get("/members/:id", async (req, res) => {
+  const {id} = req.params
+  // await new GlDepartment( req, res ).getDepartmentEmplyeeId(id);
+  await new GlDepartment( req, res ).getDepartmentMembers(id);
 });
 
 // Create new Department
@@ -16,7 +24,7 @@ router.post("/new", async (req, res) => {
 });
 
 // Update a Department
-router.get("/update/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   const {id} = req.params
   const updateDepartmentWith = req.body
   const updateDepartment = await glDepartment.update(
@@ -26,7 +34,7 @@ router.get("/update/:id", async (req, res) => {
 });
 
 // Delete Department
-router.get("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   const {id} = req.params
   const deleteDepartment = await glDepartment.destroy({ where: {id: id}});
   res.json(deleteDepartment);

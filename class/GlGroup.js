@@ -14,7 +14,7 @@ class GlGroup {
 		})
 	}
 
-	async getCategoriesByDepartmentLead(departmentLead){
+	async getGroupsByDepartmentLead(departmentLead){
 		try {
 			const results = await glGroup.findAll({where: {ag_lead_id:departmentLead }});
 			const { error } = results;
@@ -28,7 +28,7 @@ class GlGroup {
 		}
     }
 
-	async getCategoriesByDepartment(departmentID){
+	async getGroupsByDepartment(departmentID){
 		try {
 			const results = await glGroup.findAll({where: {department_id: departmentID }});
 			const { error } = results;
