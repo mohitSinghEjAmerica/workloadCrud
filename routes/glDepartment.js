@@ -19,18 +19,14 @@ router.get("/members/:id", async (req, res) => {
 // Create new Department
 router.post("/new", async (req, res) => {
     const newDepartment = req.body;
-    await glDepartment.create(newDepartment);
-    res.send({"message": "new department created"});
+    await new GlDepartment( req, res ).createDepartment(newDepartment);
 });
 
 // Update a Department
 router.put("/update/:id", async (req, res) => {
   const {id} = req.params
   const updateDepartmentWith = req.body
-  const updateDepartment = await glDepartment.update(
-      { ...updateDepartmentWith },
-      {where: { id: id }});
-  res.json(updateDepartment);
+  await new GlDepartment( req, res ).updateDepartment(updateDepartmentWith, id);
 });
 
 // Delete Department

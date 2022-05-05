@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'glDepartmentEmployee',
       tableName: 'gl_department_employee',
+      timestamps: false,
       underscore: true,
     },
   );

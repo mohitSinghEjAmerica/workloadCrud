@@ -5,7 +5,7 @@ const { employeeGroup } = require("../models");
 
 // Get all EmployeeGroups
 router.get("/all", async (req, res) => {
-    await new EmployeeGroup( req, res ).getAllEmployeeGroup(i);
+    await new EmployeeGroup( req, res ).getAllEmployeeGroup();
 });
 
 // Get all EmployeeGroups by group_id
@@ -23,7 +23,10 @@ router.get("/groupId/:id", async (req, res) => {
 
 // Create new group
 router.post("/new", async (req, res) => {
-    const newGroup = req.body;
+    const newGroup = {
+        employee_id: req.body.id,
+        group_id: req.body.group_id 
+        };
     await employeeGroup.create(newGroup);
     res.send({"message": "new Group created"});
 });
@@ -41,7 +44,7 @@ router.patch("/update/:id", async (req, res) => {
 // Delete Group
 router.delete("/delete/:id", async (req, res) => {
     const {id} = req.params
-    const deleteGroup = await employeeGroup.destroy({ where: {id: id}});
+    const deleteGroup = await employeeGroup.destroy({ where: {employee_id: id}});
     res.json(deleteGroup);
 });
 

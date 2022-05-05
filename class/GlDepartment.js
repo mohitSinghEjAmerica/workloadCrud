@@ -28,7 +28,7 @@ class GlDepartment {
     handleMemberList(list){
         return list.map(item => {
             return {
-                id: item.account_id,
+                id: item.employee_id,
                 name: item.account.name,
             }
         })
@@ -40,6 +40,39 @@ class GlDepartment {
 			const { error } = results;
 			if(error) throw new Error("Some Error")
 			return this.res.json(this.handleDepartmentList(results));
+		} catch (error) {
+			this.handleError(error)
+		}
+    }
+
+    async createDepartment(department){
+        const depObj = {
+            name: department.name,
+            status: 1,
+            description: department.description,
+            department_lead_id: department.lead
+        };
+		try {
+			const results = await glDepartment.create(depObj);
+			const { error } = results;
+			if(error) throw new Error("Some Error")
+			return this.res.send({"message": "new Department created"});
+		} catch (error) {
+			this.handleError(error)
+		}
+    }
+
+    async updateDepartment(department, id){
+        const depObj = {
+            name: department.name,
+            description: department.description,
+            department_lead_id: department.lead
+        };
+		try {
+			const results = await glDepartment.update( { ...depObj }, {where: { id: id }});
+			const { error } = results;
+			if(error) throw new Error("Some Error")
+			return this.res.send({"message": `Department updated`});
 		} catch (error) {
 			this.handleError(error)
 		}
@@ -87,7 +120,7 @@ class GlDepartment {
                 {
                     where: { [Op.or]: results },
                     include: [ { model: account, attributes: ['id','name'] } ],
-                    attributes: ["account_id"] ,
+                    attributes: ['employee_id'] ,
                     raw: true,
                     nest: true
             });

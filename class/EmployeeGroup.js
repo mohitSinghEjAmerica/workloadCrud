@@ -1,4 +1,3 @@
-
 const { employeeGroup, glEmployee, account, sequelize } = require("../models");
 const { Op } = require("sequelize");
 
@@ -18,7 +17,7 @@ class EmployeeGroup {
 	handleEmployeesList(list){
         return list.map(item => {
             return {
-                id: item.account_id,
+                id: item.employee_id,
                 name: item.account.name,
             }
         })
@@ -47,7 +46,7 @@ class EmployeeGroup {
                 {
                     where: { [Op.or]: results },
                     include: [ { model: account, attributes: ['id','name'] } ],
-                    attributes: ["account_id"] ,
+                    attributes: ["employee_id"] ,
                     raw: true,
                     nest: true
             });
