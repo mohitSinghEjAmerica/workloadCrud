@@ -16,7 +16,7 @@ router.post("/new", async (req, res) => {
 });
 
 // Update a Status
-router.get("/update/:id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
     const {id} = req.params
     const updateStatusWith = req.body
     const updateStatus = await wlStatus.update(
@@ -26,7 +26,7 @@ router.get("/update/:id", async (req, res) => {
 });
 
 // Delete Status
-router.get("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
     const {id} = req.params
     const deleteStatus = await wlStatus.destroy({ where: {id: id}});
     res.json(deleteStatus);

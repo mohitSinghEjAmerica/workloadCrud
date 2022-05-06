@@ -1,11 +1,17 @@
 const express = require("express");
+const Workload = require("../class/Workload");
 const router = express.Router();
 const { wlWorkload } = require("../models");
 
 // Get all Workload
+// router.get("/all", async (req, res) => {
+//   const listOfWorkload = await wlWorkload.findAll();
+//   res.json(listOfWorkload);
+// });
+
+// Get all workload class method
 router.get("/all", async (req, res) => {
-  const listOfWorkload = await wlWorkload.findAll();
-  res.json(listOfWorkload);
+    await new Workload(req, res).getWorkload();
 });
 
 // Create new Workload

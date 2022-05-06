@@ -1,3 +1,4 @@
+const { glDepartment, wlCategory } = require("../models");
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class wlWorkload extends Model {}
@@ -59,6 +60,6 @@ module.exports = (sequelize, DataTypes) => {
       underscore: true,
     },
   );
-
+  
   return wlWorkload;
 };
